@@ -1,0 +1,43 @@
+{
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "include": [
+    "**/*.ts",
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "target": "ES2017",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "sourceMap": true,
+    "inlineSources": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "sourceRoot": "/",
+    "rootDir": "./",
+    "allowJs": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "types": [
+      "node"
+    ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "dom",
+      "WebWorker"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}

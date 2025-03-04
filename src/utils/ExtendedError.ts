@@ -1,0 +1,39 @@
+
+class ExtendedError extends Error {
+  readonly code: number;
+  readonly errorCode: ERROR_CODES
+  readonly message: string
+
+  constructor(errorCode: ERROR_CODES, message?: string) {
+    super()
+    this.errorCode = errorCode
+    this.code = ERROR_CODES_MAPPING[errorCode]
+    this.message = message || ""
+  }
+}
+
+export enum ERROR_CODES {
+  UNAUTHORIZED = "UNAUTHORIZED",
+  NOT_FOUND = "NOT_FOUND",
+  INTERNAL_SERVER_ERROR =  "INTERNAL_SERVER_ERROR",
+  BAD_REQUEST =  "BAD_REQUEST",
+  FORBIDDEN =  "FORBIDDEN",
+  GITHUB_ERROR = "GITHUB_ERROR",
+  GITHUB_APP_NOT_FOUND = "GITHUB_APP_NOT_FOUND",
+  GITHUB_APP_NOT_INSTALLED = "GITHUB_APP_NOT_INSTALLED",
+  GITHUB_APP_NOT_AUTHORIZED = "GITHUB_APP_NOT_AUTHORIZED"
+}
+
+const ERROR_CODES_MAPPING: Record<ERROR_CODES, number> = {
+  [ERROR_CODES.UNAUTHORIZED]: 401,
+  [ERROR_CODES.NOT_FOUND]: 404,
+  [ERROR_CODES.INTERNAL_SERVER_ERROR]: 500,
+  [ERROR_CODES.BAD_REQUEST]: 400,
+  [ERROR_CODES.FORBIDDEN]: 403,
+  [ERROR_CODES.GITHUB_ERROR]: 500,
+  [ERROR_CODES.GITHUB_APP_NOT_FOUND]: 404,
+  [ERROR_CODES.GITHUB_APP_NOT_INSTALLED]: 404,
+  [ERROR_CODES.GITHUB_APP_NOT_AUTHORIZED]: 401
+}
+
+export default ExtendedError
