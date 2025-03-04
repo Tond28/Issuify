@@ -13,7 +13,7 @@ This step is focused on setting up the project and creating a simple component t
 - [x] Create the project structure
 - [x] Setup the project with the necessary dependencies
 - [x] Create a simple component that interacts with the GitHub API
-- [ ] Build typescript files to javascript files
+- [x] Build typescript files to javascript files
 
 ## Step 1: Create a simple script that creates batch issues in a GitHub repository, provided a list of issues in a specific format in a txt file.
 
