@@ -1,41 +1,54 @@
-# Auto Issue
+# Issuify 🚀
 
-This is a simple script that creates a new issue in a GitHub repository. It uses the GitHub API to create the issue.
+Issuify simplifies issue creation by allowing you to convert a plain text list of future GitHub issues into actual issues on your repository. No more manual entry—just write your list, run Issuify, and let it do the work for you!
+
+# Features
+✅ Convert a simple text list into GitHub issues
+✅ Save time by automating issue creation
+✅ Easy to use, no complex setup required
+
+Perfect for project planning, backlog grooming, and quickly adding multiple issues without hassle.
 
 ## Setup
+Before using Issuify, ensure you have:
 
-To use this script, you need to have a GitHub application: application ID, private key. You can create a GitHub application in the GitHub settings.
+- **Node.js** installed on your machine.
+- **A GitHub App** with an **Application ID** and **Private Key**.
 
-Then you have to create a `.env` file in the root directory of the project and add the following variables:
+To create a GitHub App:
+1. Go to **GitHub → Settings → Developer settings → GitHub Apps**.
+2. Click **New GitHub App** and configure it.
+3. Generate and download the private key.
+4. Note the Application ID.
+
+Then, create a `.env` file in the root directory of the project and add the following variables:
 
 ```env
-GITHUB_APP_ID= # GitHub application ID
-
-REPOSITORY_LINK= # https://api.github.com/repos/username/repo-name (replace username and repo-name with your GitHub username and repository name where you want to create the issues)
-
-GITHUB_APP_PRIVATE_KEY = # GitHub application private key
+GITHUB_APP_ID=your_github_app_id
+REPOSITORY_LINK=https://api.github.com/repos/username/repo-name  # Replace with your actual GitHub username and repository name
+GITHUB_APP_PRIVATE_KEY=your_github_app_private_key
 ```
 
 ## Usage
 
-Assuming that the standard template of your issues is:
+Issuify expects your issue list to follow this structure:
 
 ```
-First line: Title
-Other lines: Body (empty lines are allowed, empty lines between title and body are removed)
-3 empty lines between issues
+First line: Title  
+Other lines: Body (empty lines are allowed, empty lines between title and body are removed)  
+3 empty lines separate each issue  
 ```
 
+For example:
 ```
-Title 1
-Body 1
+Feature: Add dark mode
+Users should be able to switch to dark mode from settings.
 
 
 
 
-Title 2
-
-Body 2
+Bug: Fix login issue
+Some users cannot log in after the latest update.
 ```
 See the [example](data-example/issues.txt) for more details.
 
@@ -48,6 +61,8 @@ npm start
 ```
 
 ## Contributing
-
-If you want to contribute to this project, you can create a pull request with your changes. You can also contribute by opening an issue with suggestions or bug reports or managing a task from the [ROADMAP](ROADMAP.md).
+Want to contribute? You can:
+- Create a pull request with your changes.
+- Open an issue for suggestions or bug reports.
+- Help with a task from the [ROADMAP](ROADMAP.md).
 
