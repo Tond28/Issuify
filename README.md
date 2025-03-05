@@ -3,8 +3,8 @@
 Issuify simplifies issue creation by allowing you to convert a plain text list of future GitHub issues into actual issues on your repository. No more manual entry—just write your list, run Issuify, and let it do the work for you!
 
 # Features
-✅ Convert a simple text list into GitHub issues
-✅ Save time by automating issue creation
+✅ Convert a simple text list into GitHub issues </br>
+✅ Save time by automating issue creation</br>
 ✅ Easy to use, no complex setup required
 
 Perfect for project planning, backlog grooming, and quickly adding multiple issues without hassle.
