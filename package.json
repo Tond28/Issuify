@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
-  "type": "module",
   "private": true,
   "scripts": {
-    "start": "npx tsx src/index.ts"
+    "build": "NODE_ENV=production tsx build.ts",
+    "dev": "NODE_ENV=development tsx build.ts --watch",
+    "start:watch": "node dist/index.js --watch",
+    "clean": "rimraf dist",
+    "start": "node dist/index.js"
   },
   "author": "Tond28",
   "license": "MIT",
@@ -14,9 +17,11 @@
     "@octokit/app": "^15.1.0",
     "@octokit/rest": "^21.0.0",
     "dotenv": "^16.4.5",
+    "esbuild": "^0.25.0",
     "node-ts-cache": "^4.4.0",
     "node-ts-cache-storage-memory": "^4.4.0",
-    "octokit": "^4.0.2"
+    "octokit": "^4.0.2",
+    "tsx": "^4.19.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -24,6 +29,6 @@
     "@types/node": "^20.14.10",
     "eslint": "^9.21.0",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^8.25.0"
+    "typescript-eslint": "^8.26.0"
   }
 }
