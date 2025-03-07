@@ -35,10 +35,10 @@ This script will create a new issue in a GitHub repository, using the GitHub API
 
 ### Tasks
 
-- [ ] Define the format for the txt file with the list of issues and milestones
-- [ ] Parse the txt file and extract the information for each issue and milestone
-- [ ] Create a new milestone in the GitHub repository if it doesn't exist
-- [ ] Create and assign the issue to the milestone
+- [x] Define the format for the txt file with the list of issues and milestones
+- [x] Parse the txt file and extract the information for each issue and milestone
+- [x] Create a new milestone in the GitHub repository if it doesn't exist
+- [x] Create and assign the issue to the milestone
 
 ## Step 3: Manage existing issues in a GitHub repository.
 

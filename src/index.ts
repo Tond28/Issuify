@@ -73,7 +73,6 @@ async function main() {
     let milestoneNumber = undefined
     for( const milestone of milestones) {
       if (title.split("-")[0].match(new RegExp("^" + milestone.code + "\\d* ?$"))) {
-        console.log(title)
         milestoneNumber = milestone.number
         break
       }
