@@ -5,7 +5,7 @@ import { Octokit } from "@octokit/rest"
 import { AuthInterface } from "node_modules/@octokit/auth-app/dist-types/types"
 import { Cache, CacheContainer } from "node-ts-cache"
 import { MemoryStorage } from "node-ts-cache-storage-memory"
-import  ExtendedError, { ERROR_CODES }  from "../utils/ExtendedError"
+import ExtendedError, { ERROR_CODES } from "../utils/ExtendedError"
 
 const cache = new CacheContainer(new MemoryStorage())
 
@@ -15,7 +15,7 @@ const jsonCalculateKey = (data: {
   args: unknown[]
 }) => {
   return `${<string>data.methodName}:${JSON.stringify(
-      data.args
+    data.args
   )}`
 }
 
@@ -51,7 +51,7 @@ export class GithubApiComponent {
     { owner, repo } : { owner: string, repo: string },
     callback: (octokit: Octokit) => Promise<T>
   ): Promise<T> => {
-    let token;
+    let token
     try {
       const installation = await this.getInstallationId({ owner, repo })
       if (installation.status !== 200) {
@@ -91,11 +91,13 @@ export class GithubApiComponent {
     repo,
     title,
     body,
+    milestoneNumber
   }: {
     owner: string
     repo: string
     title: string
     body?: string
+    milestoneNumber?: number
   }) {
     return this._withOctokit({ owner, repo }, (octokit) =>
       octokit.request("POST /repos/{owner}/{repo}/issues", {
@@ -103,6 +105,7 @@ export class GithubApiComponent {
         repo,
         title,
         body,
+        ...(milestoneNumber && { milestone: milestoneNumber })
       })
     )
   }
@@ -168,7 +171,7 @@ export class GithubApiComponent {
       octokit.request("POST /repos/{owner}/{repo}/milestones", {
         owner,
         repo,
-        title: `${title}(${code})`,
+        title: `${title} ( ${code} )`,
       })
     )
   }

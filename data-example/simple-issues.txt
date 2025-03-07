@@ -1,0 +1,8 @@
+Feature: Add dark mode
+Users should be able to switch to dark mode from settings.
+
+
+
+
+Bug: Fix login issue
+Some users cannot log in after the latest update.
