@@ -1,6 +1,6 @@
 
 class ExtendedError extends Error {
-  readonly code: number;
+  readonly code: number
   readonly errorCode: ERROR_CODES
   readonly message: string
 
@@ -15,9 +15,9 @@ class ExtendedError extends Error {
 export enum ERROR_CODES {
   UNAUTHORIZED = "UNAUTHORIZED",
   NOT_FOUND = "NOT_FOUND",
-  INTERNAL_SERVER_ERROR =  "INTERNAL_SERVER_ERROR",
-  BAD_REQUEST =  "BAD_REQUEST",
-  FORBIDDEN =  "FORBIDDEN",
+  INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
+  BAD_REQUEST = "BAD_REQUEST",
+  FORBIDDEN = "FORBIDDEN",
   GITHUB_ERROR = "GITHUB_ERROR",
   GITHUB_APP_NOT_FOUND = "GITHUB_APP_NOT_FOUND",
   GITHUB_APP_NOT_INSTALLED = "GITHUB_APP_NOT_INSTALLED",
