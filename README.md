@@ -34,8 +34,8 @@ GITHUB_APP_PRIVATE_KEY=your_github_app_private_key
 Optionally, you can create and manage your milestones by adding them to the `milestones.txt` file in the `data/` directory. The milestones should be in the following format:
 
 ```
-MILESTONE_CODE =  Milestone Title
-MILESTONE_CODE =  Milestone Title
+MILESTONE_CODE = Milestone Title
+MILESTONE_CODE = Milestone Title
 ```
 
 Issuify expects your issue list to follow this structure:
