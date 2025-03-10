@@ -1,0 +1,8 @@
+F1 - Add dark mode
+Users should be able to switch to dark mode from settings.
+
+
+
+
+B - Fix login issue
+Some users cannot log in after the latest update.

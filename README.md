@@ -31,6 +31,13 @@ GITHUB_APP_PRIVATE_KEY=your_github_app_private_key
 
 ## Usage
 
+Optionally, you can create and manage your milestones by adding them to the `milestones.txt` file in the `data/` directory. The milestones should be in the following format:
+
+```
+MILESTONE_CODE = Milestone Title
+MILESTONE_CODE = Milestone Title
+```
+
 Issuify expects your issue list to follow this structure:
 
 ```
@@ -39,18 +46,24 @@ Other lines: Body (empty lines are allowed, empty lines between title and body a
 3 empty lines separate each issue  
 ```
 
-For example:
+if you want to add a milestone to an issue, add the milestone code at the start of the issue title (optionally followed by a number) and divide milestone's code and issue title with a `-`. For example:
+
 ```
-Feature: Add dark mode
-Users should be able to switch to dark mode from settings.
+MILESTONE_CODE - Issue Title
+Other lines: Body (empty lines are allowed, empty lines between title and body are removed)
+3 empty lines separate each issue
 
 
-
-
-Bug: Fix login issue
-Some users cannot log in after the latest update.
+MILESTONE_CODE123 - Issue Title
+Other lines: Body (empty lines are allowed, empty lines between title and body are removed)
+3 empty lines separate each issue
 ```
-See the [example](data-example/issues.txt) for more details.
+
+Complete example:
+[issue without milestones](data-example/simple-issues.txt)
+[milestones](data-example/milestones.txt)
+[issue with milestones](data-example/issues.txt)
+
 
 The list of issues should be in a file named `issues.txt` in the `data/` directory.
 
