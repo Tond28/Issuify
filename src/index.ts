@@ -3,7 +3,7 @@ import "dotenv/config"
 import { GithubApiComponent } from "./components/githubApiComponent"
 import { ISSUE_STRATEGY, IssuesComponent } from "./components/issuesComponent"
 import { container } from "tsyringe"
-import promps from "prompts"
+import prompt from "prompts"
 
 const LINK = process.env.REPOSITORY_LINK
 const OWNER = LINK.split("/")[3]
@@ -33,7 +33,7 @@ async function main() {
   //ATTENTION: This script is not finished and the final version will not be a script but a server
   //This script is just a draft to test the Github API and the different functionalities
 
-  const response = await promps({
+  const response = await prompt({
     type: "select",
     name: "value",
     message: "What strategy do you want to use creating issues?",
