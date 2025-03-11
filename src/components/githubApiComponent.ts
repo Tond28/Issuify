@@ -6,6 +6,7 @@ import { AuthInterface } from "node_modules/@octokit/auth-app/dist-types/types"
 import { Cache, CacheContainer } from "node-ts-cache"
 import { MemoryStorage } from "node-ts-cache-storage-memory"
 import ExtendedError, { ERROR_CODES } from "../utils/ExtendedError"
+import { injectable } from "tsyringe"
 
 const cache = new CacheContainer(new MemoryStorage())
 
@@ -19,6 +20,7 @@ const jsonCalculateKey = (data: {
   )}`
 }
 
+@injectable()
 export class GithubApiComponent {
   private appId: string
   private privateKey: string
@@ -100,7 +102,7 @@ export class GithubApiComponent {
     milestoneNumber?: number
   }) {
     return this._withOctokit({ owner, repo }, (octokit) =>
-      octokit.request("POST /repos/{owner}/{repo}/issues", {
+      octokit.issues.create({
         owner,
         repo,
         title,
@@ -125,20 +127,47 @@ export class GithubApiComponent {
     )
   }
 
-  async closeIssue({
+  async updateIssue({
     owner,
     repo,
-    issue_number,
+    number,
+    title,
+    body,
+    milestoneNumber
   }: {
     owner: string
     repo: string
-    issue_number: number
+    number: number
+    title: string
+    body: string
+    milestoneNumber?: number
+  }) {
+    return this._withOctokit({ owner, repo }, (octokit) =>
+      octokit.issues.update({
+        owner,
+        repo,
+        issue_number: number,
+        title,
+        body,
+        milestone: milestoneNumber
+      })
+    )
+  }
+
+  async closeIssue({
+    owner,
+    repo,
+    issueNumber,
+  }: {
+    owner: string
+    repo: string
+    issueNumber: number
   }) {
     return this._withOctokit({ owner, repo }, async (octokit) =>
       await octokit.issues.update({
         owner,
         repo,
-        issue_number,
+        issue_number: issueNumber,
         state: "closed",
       })
     )

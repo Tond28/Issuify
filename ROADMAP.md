@@ -48,9 +48,9 @@ This script will manage existing issues in a GitHub repository. If an issue alre
 
 ### Tasks
 
-- [ ] List all the issues in the GitHub repository
-- [ ] Update the existing issues with new information
-- [ ] Create new issues if they don't exist
+- [x] List all the issues in the GitHub repository
+- [x] Update the existing issues with new information
+- [x] Create new issues if they don't exist
 
 ## Step 4: Manage multiple formats for the list of issues and multiple file extensions.
 
@@ -73,4 +73,15 @@ This step is focused on creating a simple web interface that allows users to int
 
 - [ ] Create a simple web interface with a form to input the repository link and the list of issues
 - [ ] Display the list of new issues and milestones that will be created in the GitHub repository
+- [ ] (Optional) Oauth authentication with GitHub (to avoid using the GitHub App)
+
+## Step 6: AI-powered issue splitting
+
+### Description
+
+This step is focused on implementing an AI-powered issue splitting feature that will automatically split the input file into separate issues based on the content of the file. The AI model will analyze the content of the file and identify the different issues that need to be created in the GitHub repository.
+
+### Tasks
+
+- [ ] Implement an AI model that can analyze the content of the input file and split it into separate issues
 

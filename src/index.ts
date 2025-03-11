@@ -1,10 +1,18 @@
 import fs from "fs"
 import "dotenv/config"
 import { GithubApiComponent } from "./components/githubApiComponent"
+import { ISSUE_STRATEGY, IssuesComponent } from "./components/issuesComponent"
+import { container } from "tsyringe"
+import promps from "prompts"
 
 const LINK = process.env.REPOSITORY_LINK
 const OWNER = LINK.split("/")[3]
 const REPO = LINK.split("/")[4]
+
+const AUTH = {
+  owner: OWNER,
+  repo: REPO
+}
 
 let withMilestones = fs.existsSync("./data/milestones.txt")
 let rawMilestones: string[] = []
@@ -18,12 +26,28 @@ const githubComponent = new GithubApiComponent({
   appId: process.env.GITHUB_APP_ID,
   privateKey: process.env.GITHUB_APP_PRIVATE_KEY
 })
+container.registerInstance(GithubApiComponent, githubComponent)
+const issuesComponent = container.resolve(IssuesComponent)
 
 async function main() {
-
   //ATTENTION: This script is not finished and the final version will not be a script but a server
   //This script is just a draft to test the Github API and the different functionalities
 
+  const response = await promps({
+    type: "select",
+    name: "value",
+    message: "What strategy do you want to use creating issues?",
+    choices: [
+      { title: "Create Issues only if they don't exist", value: ISSUE_STRATEGY.CREATE_NEW },
+      { title: "Create Issues and update existing", value: ISSUE_STRATEGY.CREATE_UPDATE },
+      { title: "Sync Issues", value: ISSUE_STRATEGY.SYNC },
+      { title: "Create Issues, also if they exist", value: ISSUE_STRATEGY.CREATE }
+    ]
+  })
+
+  if (response.value === undefined) {
+    return
+  }
 
   // milestones
   const inputMilestones = rawMilestones.map((milestone) => {
@@ -34,10 +58,7 @@ async function main() {
     }
   })
 
-  const rawExistingMilestones = await githubComponent.listMilestones({
-    owner: OWNER,
-    repo: REPO
-  })
+  const rawExistingMilestones = await githubComponent.listMilestones(AUTH)
 
   const milestones = rawExistingMilestones.data.map((milestone) => (
     {
@@ -51,8 +72,8 @@ async function main() {
     const existingMilestone = milestones.find((m) => m.code === milestone.code)
     if (!existingMilestone) {
       const newMilestone = await githubComponent.createMilestone({
-        owner: OWNER,
-        repo: REPO,
+        owner: AUTH.owner,
+        repo: AUTH.repo,
         title: milestone.title,
         code: milestone.code
       })
@@ -88,15 +109,11 @@ async function main() {
     return acc
   }, [])
 
-  for (const issue of issues) {
-    await githubComponent.createIssue({
-      owner: OWNER,
-      repo: REPO,
-      title: issue.title,
-      body: issue.body,
-      milestoneNumber: issue.milestoneNumber
-    })
-  }
+  await issuesComponent.createIssues({
+    auth: AUTH,
+    rawIssues: issues,
+    strategy: response.value
+  })
 }
 
 main()
